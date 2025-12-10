@@ -1,23 +1,23 @@
 ---
-title: "Quickstart Guide"
-description: "Get started with Arisk in under 5 minutes"
+title: "快速入门指南"
+description: "5 分钟内开始使用 Arisk"
 ---
 
-## Get Your API Key
+## 获取 API 密钥
 
-To start using Arisk, you'll need an API key.
+要开始使用 Arisk，您需要一个 API 密钥。
 
 <Steps>
-  <Step title="Create an Account">
-    Visit [dashboard.arisk.com](https://dashboard.arisk.com) and sign up for a free account.
+  <Step title="创建账户">
+    访问 [dashboard.arisk.com](https://dashboard.arisk.com) 并注册免费账户。
   </Step>
   
-  <Step title="Generate API Key">
-    Navigate to **Settings > API Keys** and click "Create New Key". Save this key securely - you won't be able to see it again.
+  <Step title="生成 API 密钥">
+    导航到 **设置 > API 密钥** 并点击"创建新密钥"。请安全保存此密钥 - 您将无法再次查看。
   </Step>
   
-  <Step title="Set Up Authentication">
-    Include your API key in all requests using the `X-API-Key` header:
+  <Step title="设置身份验证">
+    在所有请求中使用 `X-API-Key` 头包含您的 API 密钥：
     
     ```bash
     curl https://api.arisk.com/v1/analyze \
@@ -26,11 +26,11 @@ To start using Arisk, you'll need an API key.
   </Step>
 </Steps>
 
-## Your First Risk Analysis
+## 第一次风险分析
 
-Let's analyze a wallet address to assess its risk level.
+让我们分析一个钱包地址以评估其风险等级。
 
-### Analyze a Wallet Address
+### 分析钱包地址
 
 <CodeGroup>
 
@@ -109,7 +109,7 @@ func main() {
 
 </CodeGroup>
 
-### Response Example
+### 响应示例
 
 ```json
 {
@@ -131,27 +131,27 @@ func main() {
 }
 ```
 
-## Understanding Risk Scores
+## 理解风险评分
 
-Arisk assigns a risk score from **0 to 100** to each address:
+Arisk 为每个地址分配 **0 到 100** 的风险评分：
 
-| Risk Score | Risk Level | Description |
-|-----------|-----------|-------------|
-| 0-20 | 🟢 **Low** | Legitimate activity, low risk |
-| 21-40 | 🟡 **Medium** | Some suspicious patterns detected |
-| 41-70 | 🟠 **High** | Significant risk indicators present |
-| 71-100 | 🔴 **Critical** | Known malicious or sanctioned entity |
+| 风险评分 | 风险等级 | 描述 |
+|---------|---------|------|
+| 0-20 | 🟢 **低风险** | 合法活动，风险低 |
+| 21-40 | 🟡 **中等风险** | 检测到一些可疑模式 |
+| 41-70 | 🟠 **高风险** | 存在重大风险指标 |
+| 71-100 | 🔴 **极高风险** | 已知恶意或受制裁实体 |
 
 <Warning>
-Always review **critical** and **high** risk addresses manually before proceeding with transactions.
+在继续交易之前，请务必手动审查 **极高** 和 **高** 风险地址。
 </Warning>
 
-## Monitor Transactions
+## 监控交易
 
-Real-time transaction monitoring helps you catch suspicious activity as it happens.
+实时交易监控可帮助您在可疑活动发生时立即发现。
 
 ```javascript
-// Monitor a specific address
+// 监控特定地址
 const response = await fetch('https://api.arisk.com/v1/monitor/create', {
   method: 'POST',
   headers: {
@@ -167,38 +167,38 @@ const response = await fetch('https://api.arisk.com/v1/monitor/create', {
 ```
 
 <Note>
-You'll receive real-time webhook notifications whenever the monitored address sends or receives funds.
+每当被监控地址发送或接收资金时，您将收到实时 Webhook 通知。
 </Note>
 
-## Next Steps
+## 下一步
 
 <Columns cols={2}>
   <Card
-    title="Explore API Reference"
+    title="探索 API 参考"
     icon="book"
-    href="/api-reference/introduction"
+    href="/zh/api-reference/introduction"
   >
-    Learn about all available endpoints and features.
+    了解所有可用的端点和功能。
   </Card>
   <Card
-    title="Development Setup"
+    title="开发设置"
     icon="code"
-    href="/development"
+    href="/zh/development"
   >
-    Set up your local development environment.
+    设置本地开发环境。
   </Card>
   <Card
-    title="Best Practices"
+    title="最佳实践"
     icon="lightbulb"
-    href="/essentials/settings"
+    href="/zh/essentials/settings"
   >
-    Learn security best practices and optimization tips.
+    学习安全最佳实践和优化技巧。
   </Card>
   <Card
-    title="Join Community"
+    title="加入社区"
     icon="users"
     href="https://discord.gg/arisk"
   >
-    Get help from our community and team.
+    从我们的社区和团队获得帮助。
   </Card>
 </Columns>

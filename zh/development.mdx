@@ -1,41 +1,41 @@
 ---
-title: "Development Guide"
-description: "Set up your development environment and integrate Arisk"
+title: "开发指南"
+description: "设置开发环境并集成 Arisk"
 ---
 
-## Development Environment Setup
+## 开发环境设置
 
-Get your local development environment ready for Arisk integration.
+准备好本地开发环境以集成 Arisk。
 
-### Prerequisites
+### 前置要求
 
-Before you begin, ensure you have:
+开始之前，请确保您拥有：
 
-- API Key from [Arisk Dashboard](https://dashboard.arisk.com)
-- Node.js 16+ or Python 3.8+ or Go 1.19+
-- Basic understanding of REST APIs
-- HTTPS-enabled endpoint for webhooks (optional)
+- 来自 [Arisk 控制台](https://dashboard.arisk.com) 的 API 密钥
+- Node.js 16+ 或 Python 3.8+ 或 Go 1.19+
+- 对 REST API 的基本了解
+- 支持 HTTPS 的 Webhook 端点（可选）
 
-## SDK Installation
+## SDK 安装
 
-Choose your preferred programming language and install our SDK.
+选择您喜欢的编程语言并安装我们的 SDK。
 
 <Tabs>
   <Tab title="Node.js">
     ```bash
     npm install @arisk/sdk
-    # or
+    # 或
     yarn add @arisk/sdk
     ```
     
-    ### Initialize SDK
+    ### 初始化 SDK
     
     ```javascript
     import Arisk from '@arisk/sdk';
     
     const arisk = new Arisk({
       apiKey: process.env.ARISK_API_KEY,
-      environment: 'production' // or 'sandbox'
+      environment: 'production' // 或 'sandbox'
     });
     ```
   </Tab>
@@ -45,14 +45,14 @@ Choose your preferred programming language and install our SDK.
     pip install arisk-python
     ```
     
-    ### Initialize SDK
+    ### 初始化 SDK
     
     ```python
     from arisk import AriskClient
     
     client = AriskClient(
         api_key=os.getenv('ARISK_API_KEY'),
-        environment='production'  # or 'sandbox'
+        environment='production'  # 或 'sandbox'
     )
     ```
   </Tab>
@@ -62,7 +62,7 @@ Choose your preferred programming language and install our SDK.
     go get github.com/arisk/arisk-go
     ```
     
-    ### Initialize SDK
+    ### 初始化 SDK
     
     ```go
     import "github.com/arisk/arisk-go"
@@ -75,25 +75,25 @@ Choose your preferred programming language and install our SDK.
   </Tab>
 </Tabs>
 
-## Basic Integration
+## 基础集成
 
-### Address Risk Analysis
+### 地址风险分析
 
-Analyze any blockchain address across supported networks.
+分析所有支持网络上的任何区块链地址。
 
 <CodeGroup>
 
 ```javascript JavaScript SDK
-// Analyze a single address
+// 分析单个地址
 const result = await arisk.analyze.address({
   address: '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb',
   chain: 'ethereum'
 });
 
-console.log(`Risk Score: ${result.riskScore}`);
-console.log(`Risk Level: ${result.riskLevel}`);
+console.log(`风险评分: ${result.riskScore}`);
+console.log(`风险等级: ${result.riskLevel}`);
 
-// Batch analysis
+// 批量分析
 const addresses = [
   '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb',
   '0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199'
@@ -106,16 +106,16 @@ const results = await arisk.analyze.batch({
 ```
 
 ```python Python SDK
-# Analyze a single address
+# 分析单个地址
 result = client.analyze.address(
     address='0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb',
     chain='ethereum'
 )
 
-print(f"Risk Score: {result.risk_score}")
-print(f"Risk Level: {result.risk_level}")
+print(f"风险评分: {result.risk_score}")
+print(f"风险等级: {result.risk_level}")
 
-# Batch analysis
+# 批量分析
 addresses = [
     '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb',
     '0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199'
@@ -128,7 +128,7 @@ results = client.analyze.batch(
 ```
 
 ```go Go SDK
-// Analyze a single address
+// 分析单个地址
 result, err := client.Analyze.Address(ctx, &arisk.AddressRequest{
     Address: "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb",
     Chain:   "ethereum",
@@ -138,18 +138,18 @@ if err != nil {
     log.Fatal(err)
 }
 
-fmt.Printf("Risk Score: %d\n", result.RiskScore)
-fmt.Printf("Risk Level: %s\n", result.RiskLevel)
+fmt.Printf("风险评分: %d\n", result.RiskScore)
+fmt.Printf("风险等级: %s\n", result.RiskLevel)
 ```
 
 </CodeGroup>
 
-### Transaction Screening
+### 交易筛查
 
-Screen transactions before they're executed.
+在执行交易之前进行筛查。
 
 ```javascript
-// Screen a pending transaction
+// 筛查待处理交易
 const txCheck = await arisk.screen.transaction({
   from: '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb',
   to: '0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199',
@@ -158,19 +158,19 @@ const txCheck = await arisk.screen.transaction({
 });
 
 if (txCheck.riskLevel === 'critical') {
-  console.error('⚠️ High-risk transaction detected!');
-  // Block or flag the transaction
+  console.error('⚠️ 检测到高风险交易！');
+  // 阻止或标记交易
 } else {
-  console.log('✅ Transaction approved');
-  // Proceed with transaction
+  console.log('✅ 交易已批准');
+  // 继续处理交易
 }
 ```
 
-## Webhook Integration
+## Webhook 集成
 
-Receive real-time alerts for monitored addresses.
+接收被监控地址的实时警报。
 
-### Setup Webhook Endpoint
+### 设置 Webhook 端点
 
 <CodeGroup>
 
@@ -182,7 +182,7 @@ const app = express();
 app.use(express.json());
 
 app.post('/webhook/arisk', (req, res) => {
-  // Verify webhook signature
+  // 验证 webhook 签名
   const signature = req.headers['x-arisk-signature'];
   const payload = JSON.stringify(req.body);
   
@@ -192,19 +192,19 @@ app.post('/webhook/arisk', (req, res) => {
     .digest('hex');
   
   if (signature !== expectedSignature) {
-    return res.status(401).send('Invalid signature');
+    return res.status(401).send('签名无效');
   }
   
-  // Process the webhook
+  // 处理 webhook
   const { event_type, data } = req.body;
   
   if (event_type === 'transaction.detected') {
-    console.log(`New transaction: ${data.tx_hash}`);
-    console.log(`Risk Level: ${data.risk_level}`);
+    console.log(`新交易: ${data.tx_hash}`);
+    console.log(`风险等级: ${data.risk_level}`);
     
-    // Your custom logic here
+    // 您的自定义逻辑
     if (data.risk_level === 'critical') {
-      // Send alert to your team
+      // 向团队发送警报
       notifySecurityTeam(data);
     }
   }
@@ -225,7 +225,7 @@ app = Flask(__name__)
 
 @app.route('/webhook/arisk', methods=['POST'])
 def arisk_webhook():
-    # Verify webhook signature
+    # 验证 webhook 签名
     signature = request.headers.get('X-Arisk-Signature')
     payload = request.get_data()
     
@@ -236,17 +236,17 @@ def arisk_webhook():
     ).hexdigest()
     
     if signature != expected_signature:
-        return jsonify({'error': 'Invalid signature'}), 401
+        return jsonify({'error': '签名无效'}), 401
     
-    # Process the webhook
+    # 处理 webhook
     data = request.json
     event_type = data.get('event_type')
     
     if event_type == 'transaction.detected':
-        print(f"New transaction: {data['data']['tx_hash']}")
-        print(f"Risk Level: {data['data']['risk_level']}")
+        print(f"新交易: {data['data']['tx_hash']}")
+        print(f"风险等级: {data['data']['risk_level']}")
         
-        # Your custom logic here
+        # 您的自定义逻辑
         if data['data']['risk_level'] == 'critical':
             notify_security_team(data['data'])
     
@@ -258,7 +258,7 @@ if __name__ == '__main__':
 
 </CodeGroup>
 
-### Register Webhook
+### 注册 Webhook
 
 ```javascript
 const webhook = await arisk.webhooks.create({
@@ -271,46 +271,46 @@ console.log(`Webhook ID: ${webhook.id}`);
 ```
 
 <Note>
-Always verify webhook signatures to ensure the requests are genuinely from Arisk.
+始终验证 Webhook 签名以确保请求确实来自 Arisk。
 </Note>
 
-## Environment Configuration
+## 环境配置
 
-Set up different environments for development and production.
+为开发和生产设置不同的环境。
 
 ```bash .env
-# Development
+# 开发环境
 ARISK_API_KEY=sk_test_xxxxxxxxxxxxx
 ARISK_ENV=sandbox
 ARISK_WEBHOOK_SECRET=whsec_dev_xxxxxxxxxxxxx
 
-# Production
+# 生产环境
 ARISK_API_KEY=sk_live_xxxxxxxxxxxxx
 ARISK_ENV=production
 ARISK_WEBHOOK_SECRET=whsec_live_xxxxxxxxxxxxx
 ```
 
 <Tabs>
-  <Tab title="Sandbox">
-    Use the sandbox environment for testing without affecting production data or consuming API quota.
+  <Tab title="沙箱环境">
+    使用沙箱环境进行测试，不会影响生产数据或消耗 API 配额。
     
-    - Test API key: `sk_test_*`
-    - Endpoint: `https://api-sandbox.arisk.com`
-    - Rate limit: 100 requests/minute
+    - 测试 API 密钥: `sk_test_*`
+    - 端点: `https://api-sandbox.arisk.com`
+    - 速率限制: 100 请求/分钟
   </Tab>
   
-  <Tab title="Production">
-    Production environment for live transaction analysis.
+  <Tab title="生产环境">
+    生产环境用于实时交易分析。
     
-    - Live API key: `sk_live_*`
-    - Endpoint: `https://api.arisk.com`
-    - Rate limit: Based on your plan
+    - 正式 API 密钥: `sk_live_*`
+    - 端点: `https://api.arisk.com`
+    - 速率限制: 基于您的套餐
   </Tab>
 </Tabs>
 
-## Error Handling
+## 错误处理
 
-Implement robust error handling for production applications.
+为生产应用实现健壮的错误处理。
 
 ```javascript
 try {
@@ -320,58 +320,58 @@ try {
   });
 } catch (error) {
   if (error.code === 'INVALID_ADDRESS') {
-    console.error('Invalid blockchain address format');
+    console.error('区块链地址格式无效');
   } else if (error.code === 'RATE_LIMIT_EXCEEDED') {
-    console.error('Rate limit exceeded, retry after:', error.retryAfter);
+    console.error('超出速率限制，请在以下时间后重试:', error.retryAfter);
   } else if (error.code === 'NETWORK_NOT_SUPPORTED') {
-    console.error('Blockchain network not supported');
+    console.error('不支持该区块链网络');
   } else {
-    console.error('Unexpected error:', error.message);
+    console.error('意外错误:', error.message);
   }
 }
 ```
 
-## Best Practices
+## 最佳实践
 
 <AccordionGroup>
-  <Accordion title="🔐 Secure API Key Storage">
-    - Never hardcode API keys in your source code
-    - Use environment variables or secure vault services
-    - Rotate API keys regularly
-    - Use different keys for different environments
+  <Accordion title="🔐 安全存储 API 密钥">
+    - 切勿在源代码中硬编码 API 密钥
+    - 使用环境变量或安全保管库服务
+    - 定期轮换 API 密钥
+    - 为不同环境使用不同的密钥
   </Accordion>
   
-  <Accordion title="⚡ Rate Limiting">
-    - Implement exponential backoff for retries
-    - Cache results when appropriate
-    - Use batch endpoints for multiple addresses
-    - Monitor your quota usage in the dashboard
+  <Accordion title="⚡ 速率限制">
+    - 为重试实现指数退避
+    - 适当时缓存结果
+    - 使用批量端点分析多个地址
+    - 在控制台中监控配额使用情况
   </Accordion>
   
-  <Accordion title="🎯 Optimize Performance">
-    - Cache low-risk address results for 24 hours
-    - Use batch API for analyzing multiple addresses
-    - Implement request debouncing for user inputs
-    - Consider using webhooks instead of polling
+  <Accordion title="🎯 优化性能">
+    - 缓存低风险地址结果 24 小时
+    - 使用批量 API 分析多个地址
+    - 为用户输入实现请求防抖
+    - 考虑使用 Webhook 而不是轮询
   </Accordion>
   
-  <Accordion title="📊 Monitoring & Logging">
-    - Log all high-risk detections
-    - Set up alerts for critical risk levels
-    - Monitor API response times
-    - Track false positive rates
+  <Accordion title="📊 监控和日志">
+    - 记录所有高风险检测
+    - 为极高风险级别设置警报
+    - 监控 API 响应时间
+    - 跟踪误报率
   </Accordion>
 </AccordionGroup>
 
-## Testing
+## 测试
 
-Example test cases for your integration:
+集成的示例测试用例：
 
 ```javascript
-describe('Arisk Integration', () => {
-  it('should detect high-risk address', async () => {
+describe('Arisk 集成', () => {
+  it('应检测高风险地址', async () => {
     const result = await arisk.analyze.address({
-      address: '0xSANCTIONED_ADDRESS', // Known sanctioned address
+      address: '0xSANCTIONED_ADDRESS', // 已知受制裁地址
       chain: 'ethereum'
     });
     
@@ -379,7 +379,7 @@ describe('Arisk Integration', () => {
     expect(result.categories.sanctions).toBe(true);
   });
   
-  it('should handle invalid address', async () => {
+  it('应处理无效地址', async () => {
     await expect(
       arisk.analyze.address({
         address: 'invalid',
@@ -390,21 +390,21 @@ describe('Arisk Integration', () => {
 });
 ```
 
-## Next Steps
+## 下一步
 
 <CardGroup cols={2}>
   <Card
-    title="API Reference"
+    title="API 参考"
     icon="book"
-    href="/api-reference/introduction"
+    href="/zh/api-reference/introduction"
   >
-    Explore all available endpoints and parameters
+    探索所有可用端点和参数
   </Card>
   <Card
-    title="Code Examples"
+    title="代码示例"
     icon="code"
-    href="/essentials/code"
+    href="/zh/essentials/code"
   >
-    Browse more integration examples
+    浏览更多集成示例
   </Card>
 </CardGroup>

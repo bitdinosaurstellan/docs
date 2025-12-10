@@ -1,0 +1,341 @@
+---
+title: "Latest Updates"
+description: "What's new in Arisk - December 2024"
+---
+
+# Version 2.5.0
+**Released: December 5, 2024**
+
+<Note>
+This is our biggest release of 2024! We've added Solana support, enhanced AI capabilities, and dramatically improved performance.
+</Note>
+
+## 🚀 New Features
+
+### Solana Blockchain Support
+
+We're excited to announce full support for the Solana blockchain!
+
+<Columns cols={2}>
+  <Card title="High-Speed Analysis" icon="bolt">
+    Analyze Solana transactions with sub-second response times
+  </Card>
+  <Card title="SPL Token Support" icon="coins">
+    Full support for SPL tokens and NFTs
+  </Card>
+  <Card title="Program Analysis" icon="code">
+    Risk assessment for Solana smart contracts
+  </Card>
+  <Card title="Real-time Monitoring" icon="eye">
+    Monitor Solana addresses in real-time
+  </Card>
+</Columns>
+
+**Example Usage:**
+
+```javascript
+const result = await arisk.analyze.address({
+  address: 'DYw8jCTfwHNRJhhmFcbXvVDTqWMEVFBX6ZKUmG5CNSKK',
+  chain: 'solana'
+});
+
+console.log(`Risk Score: ${result.riskScore}`);
+console.log(`SPL Token Balance: ${result.tokenBalance}`);
+```
+
+### GPT-4 Enhanced Risk Detection
+
+Our AI risk detection now leverages GPT-4 for advanced pattern recognition.
+
+<Tabs>
+  <Tab title="What's New">
+    - 🧠 Natural language risk explanations
+    - 🎯 40% improvement in fraud detection accuracy
+    - 📊 Context-aware risk assessment
+    - 🔍 Automatic suspicious pattern identification
+  </Tab>
+  
+  <Tab title="Example">
+    ```json
+    {
+      "risk_score": 78,
+      "risk_level": "high",
+      "ai_explanation": "This address shows patterns consistent with a mixing service. It has received funds from 150+ unique sources in the past 24 hours, with most transactions being of similar amounts (0.1-0.5 ETH). The address then consolidates and redistributes funds to new addresses in a pattern typical of cryptocurrency tumblers.",
+      "confidence": 0.94
+    }
+    ```
+  </Tab>
+  
+  <Tab title="Benefits">
+    - Better understanding of why an address is flagged
+    - Reduced false positives
+    - Actionable insights for compliance teams
+    - Detailed audit trails
+  </Tab>
+</Tabs>
+
+### Advanced Compliance Dashboard
+
+Complete redesign of our compliance reporting interface.
+
+**Key Highlights:**
+
+- 📊 **Interactive Analytics**: Drill down into risk metrics with custom filters
+- 📈 **Trend Analysis**: Visualize risk trends over time
+- 📄 **One-Click Reports**: Generate regulatory reports instantly
+- 🔍 **Advanced Search**: Find transactions and addresses faster
+- 🎨 **Customizable Views**: Save your favorite dashboard configurations
+
+<Frame>
+  <img src="/images/compliance-dashboard.png" alt="New Compliance Dashboard" />
+</Frame>
+
+## ⚡ Performance Improvements
+
+### 50% Faster API Response Times
+
+We've optimized our infrastructure for blazing-fast performance:
+
+| Endpoint | Before | After | Improvement |
+|----------|--------|-------|-------------|
+| Address Analysis | 850ms | 420ms | **51% faster** |
+| Batch Analysis | 3.2s | 1.5s | **53% faster** |
+| Transaction Screening | 680ms | 340ms | **50% faster** |
+| Webhook Delivery | 1.1s | 520ms | **53% faster** |
+
+**What Changed:**
+- Upgraded to latest generation cloud infrastructure
+- Implemented advanced caching layer
+- Optimized database queries
+- Enhanced CDN distribution
+
+### Horizontal Scaling
+
+Our platform now automatically scales to handle traffic spikes:
+
+- ✅ Handle 10x traffic without degradation
+- ✅ 99.99% uptime SLA
+- ✅ Global multi-region deployment
+- ✅ Automatic failover
+
+## 🔧 Improvements
+
+### Expanded Sanction Lists
+
+We've significantly expanded our sanction list coverage:
+
+<AccordionGroup>
+  <Accordion title="OFAC (US Treasury)" icon="flag-usa">
+    - Specially Designated Nationals (SDN)
+    - Sectoral Sanctions Identifications (SSI)
+    - Foreign Sanctions Evaders (FSE)
+    - **Updated daily with official sources**
+  </Accordion>
+  
+  <Accordion title="European Union" icon="flag">
+    - EU Consolidated Sanctions List
+    - Counter-terrorism sanctions
+    - Asset freezes and travel bans
+    - **Real-time updates from EU databases**
+  </Accordion>
+  
+  <Accordion title="United Nations" icon="globe">
+    - UN Security Council Sanctions
+    - Counter-terrorism committee lists
+    - Proliferation financing sanctions
+    - **Synchronized with UN official records**
+  </Accordion>
+  
+  <Accordion title="Additional Sources" icon="plus">
+    - FATF High-Risk Jurisdictions
+    - Interpol Red Notices
+    - National sanction lists (UK, Canada, Australia, Japan)
+    - Cryptocurrency-specific blacklists
+  </Accordion>
+</AccordionGroup>
+
+### DeFi Protocol Risk Assessment
+
+Enhanced risk scoring for DeFi interactions:
+
+```javascript
+const defiRisk = await arisk.analyze.defi({
+  protocol: 'uniswap',
+  address: '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb',
+  chain: 'ethereum'
+});
+
+console.log('Protocol Risk:', defiRisk.protocolRisk);
+console.log('Liquidity Risk:', defiRisk.liquidityRisk);
+console.log('Smart Contract Risk:', defiRisk.contractRisk);
+```
+
+**Supported Protocols:**
+- Uniswap, SushiSwap, PancakeSwap
+- Aave, Compound, MakerDAO
+- Curve, Balancer, 1inch
+- 50+ more protocols
+
+### Enhanced Webhook Reliability
+
+Webhooks are now more reliable than ever:
+
+- ✅ **99.9% delivery success rate** (up from 97.2%)
+- ✅ **Automatic retries** with exponential backoff
+- ✅ **Webhook signing** for enhanced security
+- ✅ **Delivery logs** in dashboard
+- ✅ **Test webhook** functionality
+
+## 🐛 Bug Fixes
+
+### Fixed Issues
+
+<Tabs>
+  <Tab title="Critical">
+    - ✅ Fixed batch analysis timeout for requests with >100 addresses
+    - ✅ Resolved incorrect risk scores for certain ERC-20 tokens (USDT, USDC)
+    - ✅ Fixed webhook delivery failures during high traffic
+    - ✅ Corrected timezone handling in compliance reports
+  </Tab>
+  
+  <Tab title="Major">
+    - ✅ Fixed pagination in address history endpoint
+    - ✅ Resolved rate limiting counter reset issues
+    - ✅ Fixed dashboard crash when viewing very old transactions
+    - ✅ Corrected NFT metadata parsing errors
+  </Tab>
+  
+  <Tab title="Minor">
+    - ✅ Fixed typos in API documentation
+    - ✅ Resolved CSS issues in dark mode
+    - ✅ Fixed export functionality in Safari
+    - ✅ Improved error messages clarity
+  </Tab>
+</Tabs>
+
+## 📚 Documentation Updates
+
+- 📖 New Solana integration guide
+- 📖 Updated Python SDK documentation
+- 📖 Added 20+ new code examples
+- 📖 Improved API reference with interactive examples
+- 📖 New video tutorials for common use cases
+
+## 🔄 Migration Guide
+
+### Breaking Changes
+
+<Warning>
+This release includes minor breaking changes for users of the beta webhook feature.
+</Warning>
+
+**Webhook Signature Verification** (Required for enhanced security):
+
+```javascript
+// Before (v2.4.x)
+app.post('/webhook', (req, res) => {
+  const data = req.body;
+  // Process without verification
+});
+
+// After (v2.5.0)
+const crypto = require('crypto');
+
+app.post('/webhook', (req, res) => {
+  const signature = req.headers['x-arisk-signature'];
+  const payload = JSON.stringify(req.body);
+  
+  const expectedSignature = crypto
+    .createHmac('sha256', WEBHOOK_SECRET)
+    .update(payload)
+    .digest('hex');
+  
+  if (signature !== expectedSignature) {
+    return res.status(401).send('Invalid signature');
+  }
+  
+  // Process verified webhook
+});
+```
+
+<Steps>
+  <Step title="Get Your Webhook Secret">
+    Navigate to **Dashboard > Webhooks** and copy your webhook secret
+  </Step>
+  
+  <Step title="Update Code">
+    Add signature verification to your webhook endpoint
+  </Step>
+  
+  <Step title="Test">
+    Use the "Test Webhook" button in dashboard to verify
+  </Step>
+  
+  <Step title="Deploy">
+    Deploy your updated code - old webhooks will continue to work until Jan 2025
+  </Step>
+</Steps>
+
+## 🎯 Coming Next
+
+Here's what we're working on for v2.6.0 (January 2025):
+
+- 🔮 **Predictive Risk Scoring**: ML models to predict future risk trends
+- 🌉 **Layer-2 Expansion**: Full support for Arbitrum, Optimism, zkSync
+- 📱 **Mobile App**: Native iOS and Android apps for on-the-go monitoring
+- 🤖 **Slack Integration**: Receive alerts directly in Slack
+- 📊 **Custom Risk Models**: Define your own risk scoring parameters
+
+<Tip>
+Want to influence our roadmap? Join our [community Discord](https://discord.gg/arisk) and share your feedback!
+</Tip>
+
+## 💬 Community Highlights
+
+Thank you to our amazing community for your contributions:
+
+- 🎉 **@cryptodev** for reporting the ERC-20 risk score bug
+- 🎉 **@blockchainsec** for suggesting the DeFi protocol feature
+- 🎉 **@compliancepro** for detailed feedback on the dashboard redesign
+
+## 📞 Get Help
+
+Need assistance with the upgrade?
+
+<CardGroup cols={2}>
+  <Card
+    title="Documentation"
+    icon="book"
+    href="/quickstart"
+  >
+    Read our comprehensive guides
+  </Card>
+  <Card
+    title="Discord Community"
+    icon="discord"
+    iconType="brands"
+    href="https://discord.gg/arisk"
+  >
+    Chat with other developers
+  </Card>
+  <Card
+    title="Email Support"
+    icon="envelope"
+    href="mailto:support@arisk.com"
+  >
+    Contact our support team
+  </Card>
+  <Card
+    title="Schedule Demo"
+    icon="calendar"
+    href="https://arisk.com/demo"
+  >
+    Book a personalized walkthrough
+  </Card>
+</CardGroup>
+
+---
+
+<Info>
+**Pro Tip**: Check out our [migration guide](/api-reference/introduction) for detailed instructions on upgrading from v2.4 to v2.5.
+</Info>
